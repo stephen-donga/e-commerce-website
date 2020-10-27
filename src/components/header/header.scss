@@ -1,0 +1,20 @@
+.header{
+    height: 70px;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .nav-buttons{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .option{
+        padding: 5px 10px;
+        text-decoration: none;
+
+    }
+}
