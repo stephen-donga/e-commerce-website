@@ -1,11 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './app.scss';
+import Menu from './components/menu/Menu'
+
+import {Switch, Route} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      
-      <h1>e-commerce</h1>
+      <Switch> 
+          <Route path='/' component={Menu} />
+      </Switch>
+
     </div>
   );
 }
