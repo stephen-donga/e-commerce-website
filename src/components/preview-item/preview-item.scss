@@ -1,0 +1,24 @@
+ .container{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    align-items: center;
+    padding: 10px;
+
+    .image{
+        width: 100%;
+        height: 95%;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 5px;
+    }
+    .label{
+        width: 100%;
+        height: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+    }
+}
