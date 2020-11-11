@@ -2,9 +2,9 @@ import React from 'react'
 
 import './button.scss'
 
-function Button({children, ...OtherProps}) {
+function Button({children,isGoogleSign, ...OtherProps}) {
     return (
-        <button className='button' {...OtherProps}>
+        <button className= {`${isGoogleSign ? 'google-sign':''} button`} {...OtherProps}>
             {
                 children
             }

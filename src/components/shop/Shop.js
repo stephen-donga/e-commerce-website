@@ -3,8 +3,8 @@ import './shop.scss'
 import {ShopData} from '../../redux/Data'
 import ProductsPreview from '../preview/ProductsPreview'
 
-function Shop() {
-    const[data, setData] = useState(ShopData)
+const Shop=()=> {
+    const[data,setData] = useState(ShopData)
     return (
         <div className='shop'>
             <h2>Product Collections</h2>
