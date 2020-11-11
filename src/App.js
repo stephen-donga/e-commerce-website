@@ -7,7 +7,7 @@ import Shop from './components/shop/Shop'
 import {Switch, Route} from 'react-router-dom'
 import Header from './components/header/Header'
 import SignInAndSignUp from './components/signing-in-up/SignInAndUp'
-import {auth} from './firebase/firbase.utils'
+import {auth, createUserProfileDocument} from './firebase/firbase.utils'
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,22 @@ class App extends React.Component {
   unsubscribeFromAuth =null;
   
   componentDidMount(){
-    auth.onAuthStateChanged(user =>this.setState({currentUser:user}))
+    console.log('incode')
+   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot =>{
+          this.setState({
+            currentUser:{
+            id:snapShot.id,
+            ...snapShot.data()
+          }
+        })
+        })
+      }
+      this.setState({currentUser:userAuth})
+    })
+
   }
 
   componentWillUnmount(){
