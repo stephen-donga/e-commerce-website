@@ -10,51 +10,49 @@ class SignIn extends React.Component {
         super(props)
     
         this.state = {
-             email:" ",
-             password:" "
+             email:"",
+             password:""
         }
     }
     
     
-      handleSubmit = (e) =>{
-        e.preventDefault();
-       this.setState({email:" ",password:" "})
+      handleSubmit = (event) =>{
+        event.preventDefault();
+       this.setState({email:"", password:""})
     }
 
-      handleChange = (e) =>{
-          const {value, name} = e.target;
+      handleChange = (event) =>{
+          const {value, name} = event.target;
           this.setState({[name] : value});
           
     }
 
     render(){
-        const {handleChange} = this.handleChange;
-        const {handleSubmit} = this.handleSubmit;
         const {email, password} =this.state;
         return(
             <div className='sign-in'>
                 <h2>Already have an account ?</h2>
                 <span>Sign in with your email and password</span>
    
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <FormInput 
-                    name='email' 
-                    type='email'
-                    value={email} 
-                    label='Email'
-                    handleChange={handleChange}
-                    /> 
+                        name='email' 
+                        type='email'
+                        value={email} 
+                        label='Email'
+                        handleChange={this.handleChange}
+                        /> 
    
                     <FormInput 
-                    name='password' 
-                    type='password' 
-                    label='Password'
-                    value={password} 
-                    handleChange={handleChange}
-                     /> 
+                        name='password' 
+                        type='password' 
+                        label='Password'
+                        value={password} 
+                        handleChange={this.handleChange}
+                        /> 
                    <div className='buttons'>
                     <Button type='submit'> Sign in  </Button>
-                   <Button onClick={signInWithGoogle} isGoogleSign> Sign in with google </Button> 
+                    <Button onClick={signInWithGoogle} isGoogleSign> Sign in with google </Button> 
                    </div>
                 </form>
    

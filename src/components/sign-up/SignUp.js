@@ -19,27 +19,26 @@ class SignUp extends React.Component {
 
     handleSubmit = async (event)=>{
         event.preventDefault();
-        alert('in before')
-
-        // const {displayNamme, email, password, confirmPassword} = this.state;
-        if(this.state.password !== this.state.confirmPassword){
+        const {displayNamme, email, password, confirmPassword} = this.state;
+        if(password !== confirmPassword){
             alert('Passwords don\'t match')
             return;
+        }else{
+            try{
+                const {user} = await auth.createUserWithEmailAndPassword(email, password);
+                await createUserProfileDocument(user, {displayNamme});
+    
+                this.setState({
+                    displayNamme:"",
+                     email: "",
+                     password:"",
+                     confirmPassword:""
+                })
+            }catch(error){
+                console.error(error)
+            }
         }
-        try{
-
-            const {user} = await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
-            await createUserProfileDocument(user,this.state.displayNamme);
-
-            this.setState({
-                displayNamme:"",
-                 email: "",
-                 password:"",
-                 confirmPassword:""
-            })
-        }catch(error){
-            console.error(error)
-        }
+       
     }
 
     handleChange = (e)=>{
@@ -56,18 +55,18 @@ class SignUp extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
                         type="text"
-                        name="displayName"
-                        value={displayNamme}
-                        onChange={this.handleChange}
-                        label='Display Name'
-                        required>
+                        name = "displayName"
+                        value = {displayNamme}
+                        handleChange = {this.handleChange}
+                        label='User Name'
+                         >
 
                     </FormInput>
                     <FormInput 
                         type="text"
                         name="email"
                         value={email}
-                        onChange={this.handleChange}
+                        handleChange={this.handleChange}
                         label='Email'
                         required>
 
@@ -76,7 +75,7 @@ class SignUp extends React.Component {
                         type="password"
                         name="password"
                         value={password}
-                        onChange={this.handleChange}
+                        handleChange={this.handleChange}
                         label=' Password'
                         required>
 
@@ -85,7 +84,7 @@ class SignUp extends React.Component {
                         type="password"
                         name="confirmPassword"
                         value={confirmPassword}
-                        onChange={this.handleChange}
+                        handleChange={this.handleChange}
                         label='Confirm password'
                         required>
                     </FormInput>
