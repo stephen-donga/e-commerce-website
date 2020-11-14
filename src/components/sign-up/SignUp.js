@@ -10,7 +10,7 @@ class SignUp extends React.Component {
         super(props)
     
         this.state = {
-            displayNamme:"",
+             displayNamme:"",
              email: "",
              password:"",
              confirmPassword:""
@@ -29,7 +29,7 @@ class SignUp extends React.Component {
                 await createUserProfileDocument(user, {displayNamme});
     
                 this.setState({
-                    displayNamme:"",
+                     displayNamme:"",
                      email: "",
                      password:"",
                      confirmPassword:""
@@ -41,8 +41,8 @@ class SignUp extends React.Component {
        
     }
 
-    handleChange = (e)=>{
-        const {value, name} = e.target;
+    handleChange = (event)=>{
+        const {value, name} = event.target;
         this.setState({[name]:value})
     }
     
@@ -53,13 +53,14 @@ class SignUp extends React.Component {
                 <h2>I do not have an account</h2>
                 <span>Sign up with your  email and password</span>
                 <form onSubmit={this.handleSubmit}>
+                   
                     <FormInput 
                         type="text"
-                        name = "displayName"
-                        value = {displayNamme}
-                        handleChange = {this.handleChange}
+                        name = "displayNamme"
+                        value={displayNamme}
+                        handleChange={this.handleChange}
                         label='User Name'
-                         >
+                        required>
 
                     </FormInput>
                     <FormInput 
