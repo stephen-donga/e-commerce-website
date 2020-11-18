@@ -6,16 +6,22 @@ import {toggleCartHidden} from '../../redux/cart/cart.actions';
 
 import {ReactComponent as ShoppingBag} from '../../assets/shopping-bag.svg'
 
+import {selectCartItemsCounter} from '../../redux/cart/cart.selectors'
+
 import './cart.scss'
 
-const  Cart = ({toggleCartHidden}) => (
+const  Cart = ({toggleCartHidden, items}) => (
     <div className='cart' onClick={toggleCartHidden}>
         <ShoppingBag  className='shopping-bag'/>
-        <span className='count-item'>0</span>
+        <span className='count-item'>{items}</span>
     </div>
 ) 
+
+const mapStateToProps = (state) =>({
+    items : selectCartItemsCounter(state)
+})
 
 const mapDispatchToProps = dispatch => ({
     toggleCartHidden: ()=> dispatch(toggleCartHidden())
 })
-export default connect(null, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

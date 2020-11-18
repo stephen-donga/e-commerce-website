@@ -8,6 +8,8 @@ import CartItem from '../cart-item/CartItem'
 
 import Button from  '../button/Button';
 
+import {selectCartItems} from '../../redux/cart/cart.selectors'
+
 const CartList = ({cartItems}) => (
     <div className="cart-list">
         <div className="cart-items">
@@ -19,7 +21,8 @@ const CartList = ({cartItems}) => (
 </div>
 )
 
-const mapStateToProps = ({cart:{cartItems}}) => ({
-    cartItems
-})
+const mapStateToProps = (state) => ({
+    cartItems: selectCartItems(state)
+});
+
 export default connect(mapStateToProps  )(CartList);
