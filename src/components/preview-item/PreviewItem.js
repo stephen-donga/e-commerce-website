@@ -1,7 +1,15 @@
 import React from 'react'
 import './preview-item.scss'
 
-function PreviewItem({id, name, image, price}) {
+import {connect} from 'react-redux'
+
+import {addItem} from '../../redux/cart/cart.actions'
+
+import Button from '../button/Button'
+
+const PreviewItem = ({ item, addItem}) => {
+
+    const {image, name, price} = item
     return (
         <div 
         className='container'>
@@ -12,8 +20,11 @@ function PreviewItem({id, name, image, price}) {
                 <h5>{name}</h5>
                 <span>Ugsh:{price}</span>
              </div>
+             <Button onClick={()=>addItem(item)} inverted >Add to cart</Button>
         </div>
     )
 }
-
-export default PreviewItem
+const mapDispatchToProps = dispatch =>({
+    addItem: item => dispatch(addItem(item)),
+})
+export default connect(null, mapDispatchToProps)(PreviewItem)

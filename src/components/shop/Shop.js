@@ -11,6 +11,7 @@ const Shop=()=> {
             {
                 data.map(({id, ...otherProps}) =>(
                     <ProductsPreview key={ id} {...otherProps} />
+                    
                 ))
             }
             
